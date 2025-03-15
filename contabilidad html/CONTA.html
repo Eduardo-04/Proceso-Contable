@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proceso Contable</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Proceso Contable</h1>
+    <div class="tabs">
+        <button onclick="openTab(event, 'registro')" class="active">Registro</button>
+        <button onclick="openTab(event, 'libro')">Libro Diario</button>
+        <button onclick="openTab(event, 'libroMayor')">Libro Mayor</button>
+        <button onclick="openTab(event, 'diagramas')">Diagramas T</button>
+        <button onclick="openTab(event, 'balanza')">Balanza de Comprobación</button>
+        <button onclick="openTab(event, 'resultados')">Balance de Resultados</button>
+    </div>
+
+    <!-- Pestaña de Registro -->
+    <div id="registro" class="tab-content" style="display: block;">
+        <h2>Registro de Transacciones</h2>
+        <form id="transactionForm">
+            <label for="descripcion">Descripción:</label>
+            <input type="text" id="descripcion" required>
+            
+            <label for="tipo">Tipo:</label>
+            <select id="tipo" required>
+                <option value="debe">Debe</option>
+                <option value="haber">Haber</option>
+            </select>
+            
+            <label for="movimiento">Número de Movimiento:</label>
+            <input type="number" id="movimiento" min="1" required>
+            
+            <label for="clasificacion">Clasificación:</label>
+            <select id="clasificacion" required>
+                <option value="activoCirculante">Activo Circulante</option>
+                <option value="activoNoCirculante">Activo No Circulante</option>
+                <option value="pasivoCirculante">Pasivo Circulante</option>
+                <option value="pasivoNoCirculante">Pasivo No Circulante</option>
+            </select>
+            
+            <label for="monto">Monto:</label>
+            <input type="number" id="monto" required>
+            
+            <button type="submit">Agregar</button>
+        </form>
+    </div>
+
+    <!-- Pestaña de Libro Diario -->
+    <div id="libro" class="tab-content">
+        <h2>Libro Diario</h2>
+        <div class="libro-container">
+            <div class="debe">
+                <h3>Debe</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Movimiento</th>
+                            <th>Descripción</th>
+                            <th>Clasificación</th>
+                            <th>Monto</th>
+                        </tr>
+                    </thead>
+                    <tbody id="debeBody"></tbody>
+                </table>
+            </div>
+            <div class="haber">
+                <h3>Haber</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Movimiento</th>
+                            <th>Descripción</th>
+                            <th>Clasificación</th>
+                            <th>Monto</th>
+                        </tr>
+                    </thead>
+                    <tbody id="haberBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pestaña de Libro Mayor -->
+    <div id="libroMayor" class="tab-content">
+        <h2>Libro Mayor</h2>
+        <div class="libro-mayor-container" id="libroMayorContainer"></div>
+    </div>
+
+    <!-- Pestaña de Diagramas T -->
+    <div id="diagramas" class="tab-content">
+        <h2>Diagramas T</h2>
+        <div class="diagramas-container" id="diagramasContainer"></div>
+    </div>
+
+    <!-- Pestaña de Balanza de Comprobación -->
+    <div id="balanza" class="tab-content">
+        <h2>Balanza de Comprobación</h2>
+        <div class="balanza-container">
+            <div class="debe">
+                <h3>Debe</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cuenta</th>
+                            <th>Monto</th>
+                        </tr>
+                    </thead>
+                    <tbody id="balanzaDebeBody"></tbody>
+                </table>
+            </div>
+            <div class="haber">
+                <h3>Haber</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cuenta</th>
+                            <th>Monto</th>
+                        </tr>
+                    </thead>
+                    <tbody id="balanzaHaberBody"></tbody>
+                </table>
+            </div>
+        </div>
+        <p>Total Debe: <span id="totalDebe">0</span></p>
+        <p>Total Haber: <span id="totalHaber">0</span></p>
+        <p>Diferencia: <span id="diferencia">0</span></p>
+    </div>
+
+    <!-- Pestaña de Balance de Resultados -->
+    <div id="resultados" class="tab-content">
+        <h2>Balance de Resultados</h2>
+        <table class="balance-table">
+            <thead>
+                <tr>
+                    <th>Cuenta</th>
+                    <th>Debe</th>
+                    <th>Haber</th>
+                </tr>
+            </thead>
+            <tbody id="balanceResultadosBody"></tbody>
+        </table>
+        <p>Utilidad/Pérdida: <span id="utilidadPerdida">0</span></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
